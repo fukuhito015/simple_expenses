@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:simple_flutter_app/components/monthly-exponse-gridview.dart';
+import 'package:simple_flutter_app/components/monthly-label.dart';
+import 'package:simple_flutter_app/utilities/date.dart';
 import '../components/expense-button.dart';
-import '../components/expense-gridview.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class MonthlyPage extends StatefulWidget {
+  const MonthlyPage({
     Key? key,
   }) : super(key: key);
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MonthlyPage> createState() => _MonthlyPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MonthlyPageState extends State<MonthlyPage> {
   @override
   Widget build(BuildContext context) {
     List<ExpenseElevatedButton> expenseList = [
@@ -59,11 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          DateTime date = DateTime.now().add(Duration(days: index - 1000));
-          return ExpenseGridView(
+          DateTime date = DateUtil.addDays(DateTime.now(), index - 1000);
+          return MonthlyExpenseGridView(
             list: expenseList,
-            date: date,
-            onChangePage: onChangePage,
+            sliverAppBar: SliverAppBar(
+              floating: true,
+              pinned: true,
+              snap: false,
+              flexibleSpace: FlexibleSpaceBar(
+                title: MonthlyLabel(date: date, onChangePage: onChangePage),
+              ),
+            ),
           );
         },
       ),

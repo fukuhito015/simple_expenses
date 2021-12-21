@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/utilities/date.dart';
 
-class DailyLabel extends StatelessWidget {
+class MonthlyLabel extends StatelessWidget {
   final DateTime date;
   final Function? onChangePage;
-  const DailyLabel({Key? key, required this.date, this.onChangePage})
+  const MonthlyLabel({Key? key, required this.date, this.onChangePage})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String dateStr = DateUtil.formatter(date);
+    String dateStr = DateUtil.formatter(date, 'yyyy年MM月');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:simple_flutter_app/components/daily-label.dart';
+import 'package:simple_flutter_app/utilities/date.dart';
 import '../components/expense-button.dart';
-import '../components/expense-gridview.dart';
+import '../components/daily-expense-gridview.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class DailyPage extends StatefulWidget {
+  const DailyPage({
     Key? key,
   }) : super(key: key);
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<DailyPage> createState() => _DailyPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _DailyPageState extends State<DailyPage> {
   @override
   Widget build(BuildContext context) {
     List<ExpenseElevatedButton> expenseList = [
@@ -41,15 +43,35 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
     PageController _pageController = PageController(initialPage: 1000);
 
+    Function? onChangePage(int index) {
+      if (index > 0) {
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.ease,
+        );
+      } else {
+        _pageController.previousPage(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.ease,
+        );
+      }
+    }
+
     return Scaffold(
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          DateTime date = DateTime.now().add(Duration(days: -1000 + index));
-          return ExpenseGridView(
-            list: expenseList,
-            date: date,
-          );
+          DateTime date = DateUtil.addDays(DateTime.now(), index - 1000);
+          return DailyExpenseGridView(
+              list: expenseList,
+              sliverAppBar: SliverAppBar(
+                floating: true,
+                pinned: true,
+                snap: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: DailyLabel(date: date, onChangePage: onChangePage),
+                ),
+              ));
         },
       ),
       floatingActionButton: FloatingActionButton(

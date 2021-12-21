@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_flutter_app/pages/home.dart';
-// import 'components/expense-button.dart';
-// import 'components/expense-gridview.dart';
-// import 'pages/home.dart';
+import 'package:simple_flutter_app/pages/daily.dart';
+import 'package:simple_flutter_app/pages/monthly.dart';
 
 void main() {
   runApp(const MainApp());
@@ -37,8 +35,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetList = [
-      const MyHomePage(),
-      const Text('2'),
+      const DailyPage(),
+      const MonthlyPage(),
       const Text('3'),
     ];
 

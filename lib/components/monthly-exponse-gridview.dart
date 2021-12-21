@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'expense-button.dart';
-import 'daily-label.dart' show DailyLabel;
 
-class ExpenseGridView extends StatelessWidget {
+class MonthlyExpenseGridView extends StatelessWidget {
   final List<ExpenseElevatedButton> list;
-  final DateTime date;
-  final Function? onChangePage;
-  const ExpenseGridView(
-      {Key? key, required this.list, required this.date, this.onChangePage})
+  final SliverAppBar sliverAppBar;
+  const MonthlyExpenseGridView(
+      {Key? key, required this.list, required this.sliverAppBar})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          floating: true,
-          pinned: true,
-          snap: false,
-          flexibleSpace: FlexibleSpaceBar(
-            title: DailyLabel(date: date, onChangePage: onChangePage),
-          ),
-        ),
+        sliverAppBar,
         SliverList(
           delegate: SliverChildListDelegate([
             Padding(
@@ -32,7 +23,7 @@ class ExpenseGridView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const Text(
-                        "（支出合計）",
+                        '（支出合計）',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -44,7 +35,7 @@ class ExpenseGridView extends StatelessWidget {
                           TextButton(
                             onPressed: () {},
                             child: const Text(
-                              "30,000",
+                              '30,000',
                               style: TextStyle(
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold,
@@ -52,7 +43,7 @@ class ExpenseGridView extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            "円",
+                            '円',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
