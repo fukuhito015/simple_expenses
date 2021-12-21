@@ -5,7 +5,9 @@ import 'daily-label.dart' show DailyLabel;
 class ExpenseGridView extends StatelessWidget {
   final List<ExpenseElevatedButton> list;
   final DateTime date;
-  const ExpenseGridView({Key? key, required this.list, required this.date})
+  final Function? onChangePage;
+  const ExpenseGridView(
+      {Key? key, required this.list, required this.date, this.onChangePage})
       : super(key: key);
 
   @override
@@ -17,9 +19,7 @@ class ExpenseGridView extends StatelessWidget {
           pinned: true,
           snap: false,
           flexibleSpace: FlexibleSpaceBar(
-            title: DailyLabel(
-              date: date,
-            ),
+            title: DailyLabel(date: date, onChangePage: onChangePage),
           ),
         ),
         SliverList(

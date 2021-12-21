@@ -41,14 +41,29 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
     PageController _pageController = PageController(initialPage: 1000);
 
+    Function? onChangePage(int index) {
+      if (index > 0) {
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.ease,
+        );
+      } else {
+        _pageController.previousPage(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.ease,
+        );
+      }
+    }
+
     return Scaffold(
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          DateTime date = DateTime.now().add(Duration(days: -1000 + index));
+          DateTime date = DateTime.now().add(Duration(days: index - 1000));
           return ExpenseGridView(
             list: expenseList,
             date: date,
+            onChangePage: onChangePage,
           );
         },
       ),

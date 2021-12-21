@@ -4,7 +4,9 @@ import 'package:simple_flutter_app/utilities/date.dart';
 
 class DailyLabel extends StatelessWidget {
   final DateTime date;
-  const DailyLabel({Key? key, required this.date}) : super(key: key);
+  final Function? onChangePage;
+  const DailyLabel({Key? key, required this.date, this.onChangePage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class DailyLabel extends StatelessWidget {
             size: 30,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            onChangePage!(-1);
+          },
         ),
         Text(
           dateStr,
@@ -35,7 +39,9 @@ class DailyLabel extends StatelessWidget {
             size: 30,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            onChangePage!(1);
+          },
         )
       ],
     );

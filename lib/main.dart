@@ -52,9 +52,9 @@ class _MainPageState extends State<MainPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '日別'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_view_month_outlined), label: 'カレンダー'),
+              icon: Icon(Icons.calendar_view_month_outlined), label: '月別'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定'),
         ],
         currentIndex: _currentIndex,
