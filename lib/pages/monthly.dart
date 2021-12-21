@@ -61,7 +61,7 @@ class _MonthlyPageState extends State<MonthlyPage> {
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) {
-          DateTime date = DateUtil.addDays(DateTime.now(), index - 1000);
+          DateTime date = DateUtil.addMonths(DateTime.now(), index - 1000);
           return MonthlyExpenseGridView(
             list: expenseList,
             sliverAppBar: SliverAppBar(
