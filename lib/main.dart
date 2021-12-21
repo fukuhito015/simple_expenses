@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import "components/expense-button.dart";
-import 'components/expense-gridview.dart';
+import 'package:simple_flutter_app/pages/home.dart';
+// import 'components/expense-button.dart';
+// import 'components/expense-gridview.dart';
+// import 'pages/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,70 +18,58 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MainPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class MainPage extends StatefulWidget {
+  const MainPage({
     Key? key,
   }) : super(key: key);
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainPageState extends State<MainPage> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    List<ExpenseElevatedButton> expenseList = [
-      const ExpenseElevatedButton(
-        name: "食費",
-        color: Colors.green,
-        budgetPrice: 200000,
-        expensePrice: 10000,
-      ),
-      const ExpenseElevatedButton(
-        name: "交際費",
-        color: Colors.amber,
-        budgetPrice: 300000,
-        expensePrice: 10000,
-      ),
-      const ExpenseElevatedButton(
-        name: "その他生活費",
-        color: Colors.pink,
-        budgetPrice: 400000,
-        expensePrice: 10000,
-      ),
-      const ExpenseElevatedButton(
-        name: "固定費",
-        color: Colors.grey,
-        budgetPrice: 500000,
-        expensePrice: 20000,
-      ),
+    List<Widget> _widgetList = [
+      const MyHomePage(),
+      const Text('2'),
+      const Text('3'),
     ];
-    PageController _pageController = PageController(initialPage: 1000);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("ざくっと支出管理"),
-        elevation: 0,
-      ),
-      body: PageView.builder(
-        controller: _pageController,
-        itemBuilder: (context, index) {
-          DateTime date = DateTime.now().add(Duration(days: -1000 + index));
-          return ExpenseGridView(
-            list: expenseList,
-            date: date,
-          );
-        },
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: null,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
+      // appBar: AppBar(
+      //   title: const Text('ざくっと支出管理'),
+      //   elevation: 0,
       // ),
+      body: Center(
+        child: _widgetList.elementAt(_currentIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_view_month_outlined), label: 'カレンダー'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定'),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        // selectedFontSize: 13.0,
+        // selectedItemColor: Colors.white,
+        // unselectedFontSize: 10.0,
+        // unselectedItemColor: Colors.grey,
+        // backgroundColor: Colors.black,
+        // type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }
