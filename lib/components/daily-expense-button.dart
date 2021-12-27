@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ExpenseElevatedButton extends StatelessWidget {
+class DailyExpenseElevatedButton extends StatelessWidget {
   final String name;
   final Color color;
   final int budgetPrice;
   final int expensePrice;
 
-  const ExpenseElevatedButton({
+  const DailyExpenseElevatedButton({
     Key? key,
     required this.name,
     required this.color,
@@ -37,7 +37,7 @@ class ExpenseElevatedButton extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '予算：${formatter.format(budgetPrice)} 円',
+                  '月間予算：${formatter.format(budgetPrice)} 円',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

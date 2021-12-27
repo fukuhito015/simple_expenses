@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'expense-button.dart';
+import 'daily-expense-button.dart';
 
 class MonthlyExpenseGridView extends StatelessWidget {
-  final List<ExpenseElevatedButton> list;
+  final List<DailyExpenseElevatedButton> list;
   final SliverAppBar sliverAppBar;
   const MonthlyExpenseGridView(
       {Key? key, required this.list, required this.sliverAppBar})
@@ -23,7 +23,7 @@ class MonthlyExpenseGridView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const Text(
-                        '（支出合計）',
+                        '（月別合計）',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

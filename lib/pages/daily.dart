@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/components/daily-label.dart';
 import 'package:simple_flutter_app/utilities/date.dart';
-import '../components/expense-button.dart';
+import '../components/daily-expense-button.dart';
 import '../components/daily-expense-gridview.dart';
 
 class DailyPage extends StatefulWidget {
@@ -15,30 +15,30 @@ class DailyPage extends StatefulWidget {
 class _DailyPageState extends State<DailyPage> {
   @override
   Widget build(BuildContext context) {
-    List<ExpenseElevatedButton> expenseList = [
-      const ExpenseElevatedButton(
+    List<DailyExpenseElevatedButton> expenseList = [
+      const DailyExpenseElevatedButton(
         name: '食費',
         color: Colors.green,
         budgetPrice: 200000,
         expensePrice: 10000,
       ),
-      const ExpenseElevatedButton(
-        name: '交際費',
+      const DailyExpenseElevatedButton(
+        name: '衣類',
         color: Colors.amber,
         budgetPrice: 300000,
         expensePrice: 10000,
       ),
-      const ExpenseElevatedButton(
+      const DailyExpenseElevatedButton(
+        name: '薬品',
+        color: Colors.indigo,
+        budgetPrice: 300000,
+        expensePrice: 10000,
+      ),
+      const DailyExpenseElevatedButton(
         name: 'その他生活費',
         color: Colors.pink,
         budgetPrice: 400000,
         expensePrice: 10000,
-      ),
-      const ExpenseElevatedButton(
-        name: '固定費',
-        color: Colors.grey,
-        budgetPrice: 500000,
-        expensePrice: 20000,
       ),
     ];
     PageController _pageController = PageController(initialPage: 1000);
